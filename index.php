@@ -18,41 +18,15 @@
 
     <div class="container">
 
-        <!-- form modal -->
-        <div class="modal fade" id="userModal" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Adding and Updating Users</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <!-- enctype properties helps to uploads the image file indatabase otherwise without this properties
-                    we wouldn't be able to upload the image  -->
-                    <form id="addform" method="post" enctype="multipart/form-data">
-                        <div class="modal-body">
-                            <label >Name</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-dark"><i class="fas fa-search text-light"></i></span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Enter your username" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <!-- I have imported my form.php where add new user button works here. It is the format for add user -->
+        <?php include 'form.php'?>
 
         <!-- input search and button section -->
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-10">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text bg-dark"><i class="fas fa-search text-light"></i></span>
+                        <span class="input-group-text bg-dark"><i class="fas fa-search text-light py-1"></i></span>
                     </div>
                     <input type="text" class="form-control" placeholder="Search user ...">
                 </div>
@@ -63,6 +37,27 @@
                 </button>
             </div>
         </div>
+
+
+        <!-- table works is done here -->
+        <?php require_once 'tableData.php'?>
+
+
+
+
+        <!-- pagination -->
+        <nav aria-label="Page navigation example" id="pagination">
+            <!-- justify-content-center helps to put this pagination in the center. Active and passive helps to show the page active or not-->
+            <ul class="pagination justify-content-center">
+                <li class="page-item disable"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+
+
     </div>
 
 
