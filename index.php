@@ -1,3 +1,12 @@
+<!-- <?php
+
+    require_once 'partials/Database.php';
+
+    $dbobj=new Database();
+    var_dump($dbobj);
+
+?> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +29,9 @@
 
         <!-- I have imported my form.php where add new user button works here. It is the format for add user -->
         <?php include 'form.php'?>
+
+        <!-- The user view profile is written in profile.php so i have included profile.php  -->
+        <?php include 'profile.php'?>
 
         <!-- input search and button section -->
         <div class="row mb-3">
