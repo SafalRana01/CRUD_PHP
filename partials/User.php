@@ -48,10 +48,17 @@
 
             $stmt=$this->conn->prepare($sql);
             $stmt->execute();
+            if($stmt->rowCount()>0){
+                $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            }else{
+                $result=[];
+            }
+            return $result;
         }
 
         // function to get single row
 
+        
         // function to count number of rows
 
         // function to upload photo
