@@ -49,18 +49,43 @@
             $stmt=$this->conn->prepare($sql);
             $stmt->execute();
             if($stmt->rowCount()>0){
-                $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+                $results=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            }else{
+                $results=[];
+            }
+            return $results;
+        }
+
+        // function to get single row
+        public function getRow($field, $value){
+            $sql="SELECT * FROM {$this->tableName} WHERE 
+            {$this->tableName}";
+
+            $stmt=$this->conn->prepare($sql);
+            $stmt->execute();
+            
+            $result=$stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['pcount'];
+
+        }
+        
+
+        // function to count number of rows
+
+        public function getCount(){
+            $sql="SELECT count(*) as pcount FROM 
+            {$field}=:{$field}";
+
+            $stmt=$this->conn->prepare($sql);
+            $stmt->execute();
+            if($stmt->rowCount()>0){
+                $result=$stmt->fetch(PDO::FETCH_ASSOC);
             }else{
                 $result=[];
             }
             return $result;
+
         }
-
-        // function to get single row
-
-        
-        // function to count number of rows
-
         // function to upload photo
 
         // function to delete
