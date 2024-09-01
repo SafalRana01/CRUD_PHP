@@ -13,7 +13,7 @@
                 $fields=$placeholder=[];
                 foreach($data as $field =>$value){
                     $fields[]=$field;
-                    $placeholder[]=":{field}";
+                    $placeholder[]=":{$field}";
                 }
             }
 
