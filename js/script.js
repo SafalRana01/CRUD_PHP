@@ -15,17 +15,19 @@ $(document).ready(function(){
             processData:false,
             // we are inserting an image in database. so contentType should always written false. Not only image it should be written for files also
             contentType:false,
-            beforSend:function(){
+            beforeSend:function(){
                 console.log("Wait.... Data is loading");
             },
 
-            success:function(){
+            success:function(response){
                 console.log(response);
             }, 
 
-            error:function(request,error){
-                console.log(arguments);
-                console.log("Error"+error);
+            error: function(request, error){
+                console.log("Error: " + error);
+                console.log("Response Text: " + request.responseText);
+                console.log("Status: " + request.status);
+                console.log("Ready State: " + request.readyState);
             },
         });
     });
