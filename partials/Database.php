@@ -13,7 +13,8 @@ class Database
 
 
         try{
-            $dsn="mysql:host={$this->dbserver}; {$this->dbname}; charset=utf8";
+            $dsn = "mysql:host={$this->dbserver};dbname={$this->dbname};charset=utf8";
+
 
 // This syntax is not compulsary to be done. But for good practise it is done because it is going to exist for a longer period of time
             $options=array(PDO::ATTR_PERSISTENT);

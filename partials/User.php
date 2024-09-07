@@ -13,7 +13,7 @@
                 $fields=$placeholder=[];
                 foreach($data as $field =>$value){
                     $fields[]=$field;
-                    $placeholder[]=":{field}";
+                    $placeholder[]=":{$field}";
                 }
             }
 
@@ -34,7 +34,8 @@
 
             }catch(PDOException $e){
                 echo "Error:".$e->getMessage();
-                this->conn->rollback();
+                $this->conn->rollback();
+
             }
 
 
@@ -59,10 +60,10 @@
         // function to get single row
         public function getRow($field, $value){
             $sql="SELECT * FROM {$this->tableName} WHERE 
-            {$field}=:{$field}";
+            {$field}=:value";
 
             $stmt=$this->conn->prepare($sql);
-            $stmt->execute();
+            $stmt->execute([':value' => $value]);
             
 
             if($stmt->rowCount()>0){
@@ -105,10 +106,16 @@
 
                 if(in_array($fileExtension,$allowedExtn)){
                     $uploadFileDir=getcwd().'/uploads/';
+                    // Create the directory if it doesn't exist
+                    if (!is_dir($uploadFileDir)) {
+                        mkdir($uploadFileDir, 0777, true);
+                    }
                     $destFiLePath=$uploadFileDir . $newFileName;
 
-                    if(move_upload_file($fileTempPath, $destFiLePath)){
+                    if(move_uploaded_file($fileTempPath, $destFiLePath)){
                         return $newFileName;
+                    } else {
+                        echo "Error: File upload failed.";
                     }
                 }
             }
