@@ -13,14 +13,14 @@
                 $fields=$placeholder=[];
                 foreach($data as $field =>$value){
                     $fields[]=$field;
-                    $placeholder[]=":{$field}";
+                    $placeholder[]=":{field}";
                 }
             }
 
             // you have two method one is this and another is above one.
             // $sql= "INSERT INTO {$this->tableName} (pname,email,phone) VALUES (:pname,:email,:phone)";
 
-            $sql= "INSERT INTO {$this->tableName} (". implode(',',$$fields).") VALUES (". implode(',',$fields).")";
+            $sql= "INSERT INTO {$this->tableName} (". implode(',',$fields).") VALUES (". implode(',',$placeholder).")";
 
             $stmt=$this->conn->prepare($sql);
 
@@ -59,13 +59,18 @@
         // function to get single row
         public function getRow($field, $value){
             $sql="SELECT * FROM {$this->tableName} WHERE 
-            {$this->tableName}";
+            {$field}=:{$field}";
 
             $stmt=$this->conn->prepare($sql);
             $stmt->execute();
             
-            $result=$stmt->fetch(PDO::FETCH_ASSOC);
-            return $result['pcount'];
+
+            if($stmt->rowCount()>0){
+                $result=$stmt->fetch(PDO::FETCH_ASSOC);
+            }else{
+                $result=[];
+            }
+            return $result;
 
         }
         
@@ -74,16 +79,13 @@
 
         public function getCount(){
             $sql="SELECT count(*) as pcount FROM 
-            {$field}=:{$field}";
+            {$this->tableName}";
 
             $stmt=$this->conn->prepare($sql);
             $stmt->execute();
-            if($stmt->rowCount()>0){
-                $result=$stmt->fetch(PDO::FETCH_ASSOC);
-            }else{
-                $result=[];
-            }
-            return $result;
+            
+            $result=$stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['pcount'];
 
         }
 

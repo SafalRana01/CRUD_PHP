@@ -24,10 +24,11 @@ $(document).ready(function(){
             }, 
 
             error: function(request, error){
+                console.log(arguments);
                 console.log("Error: " + error);
-                console.log("Response Text: " + request.responseText);
-                console.log("Status: " + request.status);
-                console.log("Ready State: " + request.readyState);
+                // console.log("Response Text: " + request.responseText);
+                // console.log("Status: " + request.status);
+                // console.log("Ready State: " + request.readyState);
             },
         });
     });
