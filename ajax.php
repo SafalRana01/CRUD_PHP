@@ -14,39 +14,40 @@ if(!empty($action)){
 
 // adding user's action
 if($action == 'adduser' && !empty($_POST)){
-    $pname=$_POST['username'];
-    $email=$_POST['email'];
-    $phone=$_POST['phone'];
-    $photo=$_POST['photo'];
+    $pname = $_POST['username'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    
+    // Correct way to handle files
+    $image = (!empty($_FILES['photo'])) ? $_FILES['photo'] : null;
 
-    $playerid=(!empty($_POST['userId']))? $_POST['userId']: "";
+    $playerid = (!empty($_POST['userId'])) ? $_POST['userId'] : "";
 
-    // If my photo is not empty. I am calling the function uploadPhoto from user.php and inserting the data in database.
-    $imagename="";
-    if(!empty($photo['name'])){
-        $imagename=$obj->uploadPhoto($photo);
-        $playerData=[
-            // first one is database table name
-            'name'=> $pname,
-            'email'=> $email,
-            'phone'=> $phone,
-            'photo'=> $imagename,
+    // If my photo is not empty
+    $imagename = "";
+    if(!empty($image['name'])){
+        $imagename = $obj->uploadPhoto($image);  // This calls the upload function
+        $playerData = [
+            'name' => $pname,
+            'email' => $email,
+            'phone' => $phone,
+            'image' => $imagename,
         ];
-    }else{
-        $playerData=[
-            'name'=> $pname,
-            'email'=> $email,
-            'phone'=> $phone,
+    } else {
+        $playerData = [
+            'name' => $pname,
+            'email' => $email,
+            'phone' => $phone,
         ];
     }
 
-    $playerid=$obj->add($playerData);
+    $playerid = $obj->add($playerData);  // Assuming the add function works properly
 
     if(!empty($playerid)){
-        $player=$obj->getRow('id', $playerid);
-        // the entire things is in array format we should convert this into json so this is the syntax
+        $player = $obj->getRow('id', $playerid);
         echo json_encode($player);
         exit();
     }
 }
+
 ?>
