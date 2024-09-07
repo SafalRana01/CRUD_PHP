@@ -42,7 +42,7 @@
                             </div>
                             <!-- photo -->
                              <!-- For image part bootstrap provide a inbuilt class="custom-file-input" for uploading photo and class="custom-file-label" to show the label . 
-                              we have to write type=file and id and laber for variable should match for example label for="userphoto" and id = "userphoto". Name should be added -->
+                              we have to write type=file and id and label for variable should match for example label for="userphoto" and id = "userphoto". Name should be added -->
                             <div class="form-group mb-3">
                                 <label for="userphoto" class="form-label">Photo</label>
                                 <div class="input-group">
