@@ -21,6 +21,13 @@ $(document).ready(function(){
 
             success:function(response){
                 console.log(response);
+                // This part is written to delete the data after successfull added. If this code is not written, even after i submitted and close then again my value will stay there. It works to clear the inputfield
+                if(response){
+                    // this will close the modal page after successfully submit the form 
+                    $("#userModal").modal("hide");
+                    // Here it will clear all the fill data that is submited and will show clear text field
+                    $("#addform")[0].reset();
+                }
             }, 
 
             error: function(request, error){
